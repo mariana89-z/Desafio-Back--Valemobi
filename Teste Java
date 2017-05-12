@@ -1,0 +1,133 @@
+*******************************
+SQL
+*******************************
+CREATE DATABASE customer
+USE customer
+
+CREATE TABLE tb_customer_account
+(
+     id_customer int(5) not null auto_increment,
+     cpf_cnpj varchar(18) not null,
+     nm_customer varchar(60),
+     s_active varchar(1),
+     vl_total int(200),
+     constraint tb_customer_account primary key (id_customer)
+);
+*******************************
+JAVA
+*******************************
+package br.com.rastreador.factory;
+import java.sql.Connection;
+import java.sql.DriverManager;
+ 
+public class ConnectionFactory 
+{
+ 
+   private static final String USERNAME = "root";
+   private static final String PASSWORD = "root";
+   private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/customer";
+   public static Connection createConnectionToMySQL() throws Exception {
+      Class.forName("com.mysql.jdbc.Driver");
+      Connection connection = DriverManager.getConnection(DATABASE_URL, USERNAME, PASSWORD);
+      return connection;
+}
+public class Cadastro 
+{
+ 
+    private int id_customer;
+    private int cpf_cnpj;
+    private String nm_customer;
+    private String s_active;
+    private BigDecimal vl_total;
+
+ public int getId_customer() {
+ return id;
+ }
+ 
+ public void setId_customer(int id) {
+ this.id_customer = id_customer;
+ }
+
+ public int getCpf_cnpj() {
+ return cpf_cnpj;
+ }
+ 
+ public void setCpf_cnpj(int cpf_cnpj) {
+ this.cpf_cnpj = cpf_cnpj;
+ } 
+ 
+ public String getNm_customer() {
+ return nm_customer;
+ }
+ 
+ public void setNm_customer(String nm_customer) {
+ this.nm_customer = nm_customer;
+ }
+ 
+ 
+ public String getS_active() {
+ return s_active;
+ }
+ 
+ public void setS_active(String s_active) {
+ this.s_active = s_active;
+ }
+
+ public BigDecimal getVl_total() {
+ return s_active;
+ }
+ 
+ public void setVl_total(BigDecimal vl_total) {
+ this.vl_total = vl_total;
+ }
+
+public void cadastraPessoas(InputStream arquivo) 
+{
+    EntityManager em = em.getTransaction().begin();
+ 
+    int contador = 1;
+    int media = 0;
+    int vl_total_aux = 0;
+    Cadastro efetuado = recuperaProximoCadastro(arquivo);
+    while (efetuada != null) 
+    {
+        em.persist(efetuada);
+ 
+        if (vl_total >= 560 &&
+            id_customer > 1500 && 
+  	    id_customer > 2700) 
+	{
+	   String sql = "insert into tb_customer_account" +
+                	" (id_customer,cpf_cnpj,nm_customer,s_active,vl_total)" +
+                	" values (?,?,?,?,?)";
+        PreparedStatement stmt = con.prepareStatement(sql);
+
+        stmt.setString(1, id_customer);
+        stmt.setString(2, cpf_cnpj);
+        stmt.setString(3, nm_customer);
+        stmt.setString(3, s_active);
+	stmt.setString(3, vl_total);
+	stmt.execute();
+        
+	vl_total_aux = vl_total_aux + vl_total.
+	System.out.println("id_customer");
+
+        }
+        efetuada = recuperaProximoCadastro(arquivo);
+        contador++;
+
+    }
+    media  = vl_total_aux / contador;
+    System.out.println(media);
+    em.getTransaction().commit();
+    em.close();
+}
+}
+
+
+public static void main(String[] args) throws Exception
+{
+
+      Connection con = createConnectionToMySQL();
+      Cadastra cad = cadastraPessoas(arquivo);
+}
