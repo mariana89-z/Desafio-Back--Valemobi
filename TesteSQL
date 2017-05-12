@@ -1,0 +1,28 @@
+1 - Na tabela tb_customer a chave primaria é id_customer;
+    Na tabela tb_customer_adress a chave primaria são  id_customer e cd_adress_type;
+    Na tabela dm_adress_type a chave primaria é cd_adress_type.,
+
+2 - INSERT INTO tb_customer VALUE('0001','Joãozinho Silva','88877766655');
+    INSERT INTO tb_customer_adress VALUE('0001','R','Rua das Flores','1', null,'01234-567');
+    INSERT INTO tb_customer_adress VALUE('0001','C','Rua das Pedras','100','Conjunto 200','01234-567'); 
+
+3 - Três endereços por Cliente.
+
+4 - SELECT c~id_customer 
+	   c~nm_customer
+           c~cpf_cnpj
+	   a~cd_adress_type
+           a~street
+	   a~lot
+ 	   a~references
+	   a~zip_code
+      FROM tb_customer AS c
+      INNER JOIN tb_customer_adress AS a ON c~id_customer = a~id_customer
+      WHERE cpf_cnpj = $cpf.
+
+    DELETE FROM tb_customer WHERE id_customer = $tb_customer-id_customer 
+    DELETE FROM tb_customer_adress WHERE id_customer = $tb_customer-id_customer.
+
+
+
+ 
